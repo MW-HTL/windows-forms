@@ -100,9 +100,8 @@ namespace SensorHub
         private void CloseGraph()
         {
             if (Graph != null && !Graph.IsDisposed)
-            {
-                Graph.FormClosed -= Graph_FormClosed; // optional
-                Graph.Close(); // löst in LoggerForm: _subscription.Dispose()
+            { 
+                Graph.Close(); // triggers Subscription.Dispose() in GraphForm
             }
 
             Graph = null;
@@ -110,7 +109,6 @@ namespace SensorHub
 
         private void Graph_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Wenn User per X schließt: Checkbox muss auf OFF
             Graph = null;
             cbxGraph.Checked = false;
         }

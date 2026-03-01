@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,15 +21,10 @@ namespace SensorHub
         {
             InitializeComponent();
             Subscription = hub.Subscribe(this);
-            this.FormClosed += GraphForm_FormClosed;
+            this.FormClosed += (_, __) => Subscription.Dispose();
 
             SetupChart();
 
-        }
-
-        private void GraphForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Subscription.Dispose();
         }
 
         private void SetupChart()
